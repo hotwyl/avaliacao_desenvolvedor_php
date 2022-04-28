@@ -1,0 +1,55 @@
+Options -Indexes
+
+<FilesMatch "\.env$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.yml$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.json$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.htaccess$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.sql">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.txt$">
+    Deny from all
+</FilesMatch>
+
+RewriteEngine on
+
+RewriteCond %{QUERY_STRING} "script" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{QUERY_STRING} "sql" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{QUERY_STRING} "select" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{QUERY_STRING} "delete" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{QUERY_STRING} "update" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{QUERY_STRING} "drop" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{QUERY_STRING} "insert" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{QUERY_STRING} "create" [NC]
+RewriteRule .* -[F]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php
