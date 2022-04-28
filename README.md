@@ -21,8 +21,8 @@
 * [x] Crud Pedidos
 
 # Tecnologias utilizadas
-* Php 8 / Laravel 9
-* MySql 5.7
+* Php / Laravel
+* MySql / MariaDB / PostgreSQL / MongoDB / SQLite / Firebird
 * Api RestFul / JSON
 * Auth JWT
 * PDO PHP
@@ -100,7 +100,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Editor de Código - [Notepad++](https://notepad-plus-plus.org/)
 - Emulador de Serviços Web - [Xampp](https://www.apachefriends.org/pt_br/index.html)
 - Emulador de Serviços Web - [WampServer](https://www.wampserver.com/en/)
-- Gerenciado de Banco de Dados - [Workbench](https://www.mysql.com/products/workbench/)
-- Plataforma de API - [Postman](https://www.postman.com/)
-- Plataforma de API - [Insomnia](https://insomnia.rest/)
-- API Teste Online - [REST test test](https://resttesttest.com/)
+- Gerenciador de Banco de Dados - [phpMyAdmin](https://www.phpmyadmin.net/downloads/)
+- Gerenciador de Banco de Dados - [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+- Gerenciador de Banco de Dados - [TablePlus](https://tableplus.com/)
+- Gerenciador de Banco de Dados - [HeidiSQL](https://www.heidisql.com/download.php)
+- Gerenciador de Banco de Dados - [Sequel Pro](https://www.sequelpro.com/)
+- Software para testes de API - [Postman](https://www.postman.com/)
+- Software para testes de API - [Insomnia](https://insomnia.rest/)
+- site para testes de API - [REST test test](https://resttesttest.com/)
+- Dominio Gratuito para aplicações Web para testes - [Freenom](https://www.freenom.com/pt/index.html?lang=pt)
+- Hospedagem web gratuita para testes - [Infinity Free](https://www.infinityfree.net/)
+- Hospedagem web gratuita para testes - [Webhost](https://br.000webhost.com/)
