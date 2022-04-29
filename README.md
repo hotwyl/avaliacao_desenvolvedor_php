@@ -63,7 +63,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 `php artisan key:generate` Gerar uma chave, pois este é um projeto clonado
 
-`php artisan migrate` Cria as Tabelas na base de dados definida no arquivo `.env`
+3. Parametrize as configurações do projeto no arquivo `.env`
+
+4. Crie seu Banco de dados com os parametros definidos no arquivo `.env`
+
+`php artisan migrate` Cria as Tabelas na base de dados 
 
 `php artisan migrate:fresh --seed` Apagar tabelas, recriar as tabelas, popular tabelas com dados aleatórios (Optional)
 
@@ -73,7 +77,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 `php artisan serve` Execute o servidor do Framework
 
-3. Acesse `http://localhost:8000` em seu navegador de Internet ou utilize software para testes de API
+5. Acesse `http://localhost:8000` em seu navegador de Internet ou utilize software para testes de API
 
 ## Notas
 
@@ -106,7 +110,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Gerenciador de Banco de Dados - [Sequel Pro](https://www.sequelpro.com/)
 - Software para testes de API - [Postman](https://www.postman.com/)
 - Software para testes de API - [Insomnia](https://insomnia.rest/)
-- site para testes de API - [REST test test](https://resttesttest.com/)
+- site para testes de API - [REST test](https://resttesttest.com/)
 - Dominio Gratuito para aplicações Web para testes - [Freenom](https://www.freenom.com/pt/index.html?lang=pt)
 - Hospedagem web gratuita para testes - [Infinity Free](https://www.infinityfree.net/)
 - Hospedagem web gratuita para testes - [Webhost](https://br.000webhost.com/)
