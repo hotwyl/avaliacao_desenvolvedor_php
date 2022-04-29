@@ -25,34 +25,24 @@ class UsuarioRepository
         return $this->repository->find($id);
     }
 
-    public function create()
-    {
-        return null;
-    }
-
     public function store($request)
     {
         return $this->repository->create($request->toArray());
     }
 
-    public function edit($id)
-    {
-        return $this->repository->find($id);
-    }
+    // public function update($request)
+    // {
+    //     $produto = $this->repository->find($request->id);
 
-    public function update($request)
-    {
-        $produto = $this->repository->find($request->id);
+    //     if (!$produto) return false;
 
-        if (!$produto) return false;
+    //     $produto->fill($request->toArray());
 
-        $produto->fill($request->toArray());
+    //     return $produto->update();
+    // }
 
-        return $produto->update();
-    }
-
-    public function delete($id)
-    {
-        return $this->repository->find($id)->delete();
-    }
+    // public function delete($id)
+    // {
+    //     return $this->repository->find($id)->delete();
+    // }
 }

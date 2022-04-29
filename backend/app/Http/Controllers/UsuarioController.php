@@ -27,33 +27,18 @@ class UsuarioController extends Controller
         return $this->service->show($id);
     }
 
-    public function create()
-    {
-        return $this->service->create();
-    }
-
-    public function store(Request $request)
+    public function store(StoreUsuarioRequest $request)
     {
         return $this->service->store($request);
     }
 
-    public function edit($id)
-    {
-        return $this->service->edit($id);
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     return $this->service->update($request, $id);
+    // }
 
-    public function update(Request $request, $id)
-    {
-        return $this->service->update($request, $id);
-    }
-
-    public function del($id)
-    {
-        return $this->service->del($id);
-    }
-
-    public function delete($id)
-    {
-        return $this->service->delete($id);
-    }
+    // public function delete($id)
+    // {
+    //     return $this->service->delete($id);
+    // }
 }

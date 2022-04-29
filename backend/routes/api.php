@@ -1,28 +1,25 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,
     Route
+};
+use App\Http\Controllers\{
+    UsuarioController,
 };
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-Route::get('/teste', function () {
-    return ['response' => true];
-});
-
 Route::prefix('usuario')->group(function () {
     Route::get('/', [UsuarioController::class, 'index'])->name('usuario.index');
     Route::get('/{id}', [UsuarioController::class, 'show'])->where('id', '[0-9]+')->name('usuario.show');
-    Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuario.update');
-    Route::delete('/{id}', [UsuarioController::class, 'delete'])->where('id', '[0-9]+')->name('usuario.destroy');
     Route::post('/', [UsuarioController::class, 'store'])->name('usuario.store');
-    Route::get('/novo', [UsuarioController::class, 'create'])->name('usuario.create');
-    Route::get('/edit/{id}', [UsuarioController::class, 'edit'])->where('id', '[0-9]+')->name('usuario.edit');
-    Route::get('/del/{id}', [UsuarioController::class, 'del'])->where('id', '[0-9]+')->name('usuario.apagar');
+    // Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuario.update');
+    // Route::delete('/{id}', [UsuarioController::class, 'delete'])->where('id', '[0-9]+')->name('usuario.destroy');
 });
 
 // Auth::routes();
