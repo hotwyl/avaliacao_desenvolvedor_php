@@ -27,15 +27,16 @@ class UpdateUsuarioRequest extends FormRequest
     {
         return [
             'nome' => "required|min:5|max:100",
-            'email' => "required|email|min:3",
-            'status' => "required"
+            'email' => "required|email|min:5",
+            'password' => "nullable|min:5|max:10",
+            'status' => "nullable"
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'messagem'   => 'Erro de Validação do formulário',
+            'messagem'   => 'Erro na Validação do formulário',
             'erros'      => $validator->errors()
         ]));
     }

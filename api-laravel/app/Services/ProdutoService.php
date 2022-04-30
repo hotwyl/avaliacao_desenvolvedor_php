@@ -88,6 +88,28 @@ class ProdutoService
             return response()->json($response);
         }
     }
+
+    public function search($request)
+    {
+        foreach ($request->all() as $key => $value) {
+            if (!$value || empty($value) || $key == '_token' || $value == null || $value == false) {
+                unset($data[$key]);
+            } else {
+                $values[$key] = addslashes(trim(strip_tags($value)));
+            }
+        }
+
+        $parametros['descricao'] = isset($values['descricao']) && !empty($values['descricao']) ? $values['descricao'] : '';
+        $parametros['status'] = isset($values['status']) && !empty($values['status']) ? $values['status'] : '';
+
+        if ($response = $this->repository->search((object)$parametros)) {
+            $response = formata_retorno('search', 'success', $response);
+            return response()->json($response);
+        } else {
+            $response = formata_retorno('search', 'error');
+            return response()->json($response);
+        }
+    }
 }
 
 function formata_retorno($metodo, $resultado, $registros = null)
@@ -167,6 +189,15 @@ function retorna_mensagens($metodo, $registros)
                 $mensagem = 'Produto não pode ser deletado.';
             }
             break;
+
+            case 'search':
+                if ($registros == null || count($registros) <= 0) {
+                    $mensagem = 'Não foi encontrado dados para retornar.';
+                } else {
+                    $mensagem = 'Segue dados encontrados.';
+                }
+                break;
+
 
         default:
             $mensagem = '';

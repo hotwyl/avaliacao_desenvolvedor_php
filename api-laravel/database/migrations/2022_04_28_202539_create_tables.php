@@ -22,14 +22,6 @@ class CreateTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome')->unique();
-            $table->string('email')->unique();
-            $table->integer('status')->default(0);
-            $table->timestamps();
-        });
-
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->integer('numero_pedido')->unique();
@@ -37,7 +29,7 @@ class CreateTables extends Migration
             $table->foreignId('fk_usuario_id')->nullable();
             $table->timestamps();
             $table->foreign('fk_produto_id')->references('id')->on('produtos');
-            $table->foreign('fk_usuario_id')->references('id')->on('usuarios');
+            $table->foreign('fk_usuario_id')->references('id')->on('users');
         });
     }
 
@@ -50,6 +42,5 @@ class CreateTables extends Migration
     {
         Schema::dropIfExists('pedidos');
         Schema::dropIfExists('produtos');
-        Schema::dropIfExists('usuarios');
     }
 }

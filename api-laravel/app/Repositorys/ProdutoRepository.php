@@ -50,4 +50,12 @@ class ProdutoRepository
 
         return $this->repository->find($id)->delete();
     }
+
+    public function search($request)
+    {
+        return $this->repository->query()
+        ->orWhere('descricao', 'LIKE' ,"%{$request->descricao}%")
+        ->orWhere('status', 'LIKE' ,"%{$request->status}%")
+        ->get();
+    }
 }

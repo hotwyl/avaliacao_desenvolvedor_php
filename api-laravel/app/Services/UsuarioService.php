@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Usuario;
+use App\Models\User;
 use App\Repositorys\UsuarioRepository;
-
 
 class UsuarioService
 {
@@ -38,13 +37,13 @@ class UsuarioService
 
     public function store($request)
     {
-        $usuario = new Usuario();
+        $usuario = new User();
 
         foreach ($request->all() as $key => $value) {
             if (!$value || empty($value) || $key == '_token' || $value == null || $value == false) {
                 unset($usuario[$key]);
             } else {
-                $usuario->$key = $value;
+                $usuario->$key = addslashes(trim(strip_tags($value)));
             }
         }
 
@@ -59,14 +58,14 @@ class UsuarioService
 
     public function update($request, $id)
     {
-        $data = new Usuario();
+        $data = new User();
         $data->id = $id;
 
         foreach ($request->all() as $key => $value) {
             if (!$value || empty($value) || $key == '_token' || $value == null || $value == false) {
                 unset($data[$key]);
             } else {
-                $data->$key = $value;
+                $data->$key = addslashes(trim(strip_tags($value)));
             }
         }
 
@@ -86,6 +85,29 @@ class UsuarioService
             return response()->json($response);
         } else {
             $response = formata_retorno('delete', 'error');
+            return response()->json($response);
+        }
+    }
+
+    public function search($request)
+    {
+        foreach ($request->all() as $key => $value) {
+            if (!$value || empty($value) || $key == '_token' || $value == null || $value == false) {
+                unset($data[$key]);
+            } else {
+                $values[$key] = addslashes(trim(strip_tags($value)));
+            }
+        }
+
+        $parametros['nome'] = isset($values['nome']) && !empty($values['nome']) ? $values['nome'] : '';
+        $parametros['email'] = isset($values['email']) && !empty($values['email']) ? $values['email'] : '';
+        $parametros['status'] = isset($values['status']) && !empty($values['status']) ? $values['status'] : '';
+
+        if ($response = $this->repository->search((object)$parametros)) {
+            $response = formata_retorno('search', 'success', $response);
+            return response()->json($response);
+        } else {
+            $response = formata_retorno('search', 'error');
             return response()->json($response);
         }
     }
@@ -166,6 +188,14 @@ function retorna_mensagens($metodo, $registros)
                 $mensagem = 'Usuário deletado com sucesso.';
             } else {
                 $mensagem = 'Usuário não pode ser deletado.';
+            }
+            break;
+
+        case 'search':
+            if ($registros == null || count($registros) <= 0) {
+                $mensagem = 'Não foi encontrado dados para retornar.';
+            } else {
+                $mensagem = 'Segue dados encontrados.';
             }
             break;
 

@@ -2,7 +2,7 @@
 
 namespace App\Repositorys;
 
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ class UsuarioRepository
 {
     protected $categoria;
 
-    public function __construct(Usuario $categoria)
+    public function __construct(User $categoria)
     {
         $this->repository = $categoria;
     }
@@ -49,5 +49,14 @@ class UsuarioRepository
         if (!$usuario) return false;
 
         return $this->repository->find($id)->delete();
+    }
+
+    public function search($request)
+    {
+        return $this->repository->query()
+        ->orWhere('nome', 'LIKE' ,"%{$request->nome}%")
+        ->orWhere('email', 'LIKE' ,"%{$request->email}%")
+        ->orWhere('status', 'LIKE' ,"%{$request->status}%")
+        ->get();
     }
 }

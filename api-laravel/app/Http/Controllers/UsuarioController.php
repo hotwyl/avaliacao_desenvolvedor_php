@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
-use App\Http\Requests\StoreUsuarioRequest;
-use App\Http\Requests\UpdateUsuarioRequest;
+use App\Http\Requests\{
+    SearchUsuarioRequest,
+    StoreUsuarioRequest,
+    UpdateUsuarioRequest
+};
+
 use App\Services\UsuarioService;
-use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
@@ -40,5 +42,10 @@ class UsuarioController extends Controller
     public function delete($id)
     {
         return $this->service->delete($id);
+    }
+
+    public function search(SearchUsuarioRequest $request)
+    {
+        return $this->service->search($request);
     }
 }
