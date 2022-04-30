@@ -2,13 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Usuario;
-use App\Repositorys\UsuarioRepository;
+use App\Models\Produto;
+use App\Repositorys\ProdutoRepository;
 
-
-class UsuarioService
+class ProdutoService
 {
-    public function __construct(UsuarioRepository $repository)
+    public function __construct(ProdutoRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -38,17 +37,17 @@ class UsuarioService
 
     public function store($request)
     {
-        $usuario = new Usuario();
+        $produto = new Produto();
 
         foreach ($request->all() as $key => $value) {
             if (!$value || empty($value) || $key == '_token' || $value == null || $value == false) {
-                unset($usuario[$key]);
+                unset($produto[$key]);
             } else {
-                $usuario->$key = $value;
+                $produto->$key = $value;
             }
         }
 
-        if ($response = $this->repository->store($usuario)) {
+        if ($response = $this->repository->store($produto)) {
             $response = formata_retorno('store', 'success', $response);
             return response()->json($response);
         } else {
@@ -59,7 +58,7 @@ class UsuarioService
 
     public function update($request, $id)
     {
-        $data = new Usuario();
+        $data = new Produto();
         $data->id = $id;
 
         foreach ($request->all() as $key => $value) {
@@ -163,9 +162,9 @@ function retorna_mensagens($metodo, $registros)
 
         case 'delete':
             if (isset($registros) && !empty($registros)) {
-                $mensagem = 'Usuário deletado com sucesso.';
+                $mensagem = 'Produto deletado com sucesso.';
             } else {
-                $mensagem = 'Usuário não pode ser deletado.';
+                $mensagem = 'Produto não pode ser deletado.';
             }
             break;
 

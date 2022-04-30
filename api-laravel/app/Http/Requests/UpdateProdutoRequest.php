@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class UpdateProdutoRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class UpdateProdutoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,24 @@ class UpdateProdutoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descricao' => "required|min:5|max:100",
+            'valor' => "required|number",
+            'status' => "required"
         ];
     }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'messagem'   => 'Erro de Validação do formulário',
+            'erros'      => $validator->errors()
+        ]));
+    }
+
+    // public function messages()
+    // {
+    //     return [
+
+    //     ];
+    // }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\{
     Route
 };
 use App\Http\Controllers\{
+    ProdutoController,
     UsuarioController,
 };
 
@@ -20,6 +21,13 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', [UsuarioController::class, 'store'])->name('usuario.store');
         Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuario.update');
         Route::delete('/{id}', [UsuarioController::class, 'delete'])->where('id', '[0-9]+')->name('usuario.destroy');
+    });
+    Route::prefix('produto')->group(function () {
+        Route::get('/', [ProdutoController::class, 'index'])->name('produto.index');
+        Route::get('/{id}', [ProdutoController::class, 'show'])->where('id', '[0-9]+')->name('produto.show');
+        Route::post('/', [ProdutoController::class, 'store'])->name('produto.store');
+        Route::put('/{id}', [ProdutoController::class, 'update'])->where('id', '[0-9]+')->name('produto.update');
+        Route::delete('/{id}', [ProdutoController::class, 'delete'])->where('id', '[0-9]+')->name('produto.destroy');
     });
 });
 // Auth::routes();
