@@ -43,7 +43,14 @@ class UsuarioService
             if (!$value || empty($value) || $key == '_token' || $value == null || $value == false) {
                 unset($usuario[$key]);
             } else {
-                $usuario->$key = addslashes(trim(strip_tags($value)));
+                switch ($key) {
+                    case 'password':
+                        $usuario->$key = password_hash(addslashes(trim(strip_tags($value))), PASSWORD_DEFAULT);
+                        break;
+                    default:
+                        $usuario->$key = addslashes(trim(strip_tags($value)));
+                        break;
+                }
             }
         }
 
