@@ -61,7 +61,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 `copy .env.example .env` Crie o arquivo .env copiando o arquivo .env.example
 
-`php artisan key:generate` Gerar uma chave, pois este é um projeto clonado
+`php artisan key:generate` Gerar uma chave Publica laravel, pois este é um projeto clonado
+
+`php artisan jwt:secret` Gerar uma chave do JWT, pois este é um projeto clonado
 
 3. Parametrize as configurações do projeto no arquivo `.env`
 
