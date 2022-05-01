@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Pedido;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -46,6 +48,6 @@ class User extends Authenticatable
     ];
 
     public function pedidos() {
-        return $this->hasMany(Pedido::class, 'id_project' , 'id' );
+        return $this->hasMany(Pedido::class,'usuario_id','id');
     }
 }

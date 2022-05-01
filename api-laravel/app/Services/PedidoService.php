@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Produto;
-use App\Repositorys\ProdutoRepository;
+use App\Models\Pedido;
+use App\Repositorys\PedidoRepository;
 
-class ProdutoService
+class PedidoService
 {
-    public function __construct(ProdutoRepository $repository)
+    public function __construct(PedidoRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -37,17 +37,17 @@ class ProdutoService
 
     public function store($request)
     {
-        $produto = new Produto();
+        $pedido = new Pedido();
 
         foreach ($request->all() as $key => $value) {
             if (!$value || empty($value) || $key == '_token' || $value == null || $value == false) {
-                unset($produto[$key]);
+                unset($pedido[$key]);
             } else {
-                $produto->$key = $value;
+                $pedido->$key = $value;
             }
         }
 
-        if ($response = $this->repository->store($produto)) {
+        if ($response = $this->repository->store($pedido)) {
             $response = formata_retorno('store', 'success', $response);
             return response()->json($response);
         } else {
@@ -58,7 +58,7 @@ class ProdutoService
 
     public function update($request, $id)
     {
-        $data = new Produto();
+        $data = new Pedido();
         $data->id = $id;
 
         foreach ($request->all() as $key => $value) {
@@ -99,7 +99,9 @@ class ProdutoService
             }
         }
 
-        $parametros['descricao'] = isset($values['descricao']) && !empty($values['descricao']) ? $values['descricao'] : '';
+        $parametros['numero_ped'] = isset($values['numero_ped']) && !empty($values['numero_ped']) ? $values['numero_ped'] : '';
+        $parametros['produto_id'] = isset($values['produto_id']) && !empty($values['produto_id']) ? $values['produto_id'] : '';
+        $parametros['usuario_id'] = isset($values['usuario_id']) && !empty($values['usuario_id']) ? $values['usuario_id'] : '';
         $parametros['status'] = isset($values['status']) && !empty($values['status']) ? $values['status'] : '';
 
         if ($response = $this->repository->search((object)$parametros)) {
@@ -137,8 +139,10 @@ function formata_retorno($metodo, $resultado, $registros = null)
 
 function transforma_objeto($objeto)
 {
-    $dados[0]['descricao'] = $objeto->descricao;
-    $dados[0]['valor'] = $objeto->valor;
+    $dados[0]['id'] = $objeto->id;
+    $dados[0]['numero_ped'] = $objeto->numero_ped;
+    $dados[0]['produto_id'] = $objeto->produto_id;
+    $dados[0]['usuario_id'] = $objeto->usuario_id;
     $dados[0]['status'] = $objeto->status;
     $dados[0]['created_at'] = $objeto->created_at;
     $dados[0]['updated_at'] = $objeto->updated_at;

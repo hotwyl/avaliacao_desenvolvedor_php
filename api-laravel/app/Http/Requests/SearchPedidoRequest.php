@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class UpdatePedidoRequest extends FormRequest
+class SearchPedidoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class UpdatePedidoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,10 +26,10 @@ class UpdatePedidoRequest extends FormRequest
     public function rules()
     {
         return [
-            'numero_ped' => "requird|numeric",
-            'usuario_id' => "requird|numeric",
-            'produto_id' => "requird|numeric",
-            'status' => "requird"
+            'numero_ped' => "nullable|numeric",
+            'usuario_id' => "nullable|numeric",
+            'produto_id' => "nullable|numeric",
+            'status' => "nullable"
         ];
     }
 

@@ -2,22 +2,22 @@
 
 namespace App\Repositorys;
 
-use App\Models\Produto;
+use App\Models\Pedido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-class ProdutoRepository
+class PedidoRepository
 {
     protected $categoria;
 
-    public function __construct(Produto $produto)
+    public function __construct(Pedido $pedido)
     {
-        $this->repository = $produto;
+        $this->repository = $pedido;
     }
 
     public function index()
     {
-        return  $this->repository->orderBy('descricao')->paginate();
+        return  $this->repository->orderBy('numero_ped')->paginate();
     }
 
     public function show($id)
@@ -54,7 +54,9 @@ class ProdutoRepository
     public function search($request)
     {
         return $this->repository->query()
-        ->orWhere('descricao', 'LIKE' ,"%{$request->descricao}%")
+        ->orWhere('numero_ped', 'LIKE' ,"%{$request->numero_ped}%")
+        ->orWhere('produto_id', 'LIKE' ,"%{$request->produto_id}%")
+        ->orWhere('usuario_id', 'LIKE' ,"%{$request->usuario_id}%")
         ->orWhere('status', 'LIKE' ,"%{$request->status}%")
         ->paginate();
     }

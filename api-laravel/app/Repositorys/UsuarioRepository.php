@@ -10,18 +10,19 @@ class UsuarioRepository
 {
     protected $categoria;
 
-    public function __construct(User $categoria)
+    public function __construct(User $usuario)
     {
-        $this->repository = $categoria;
+        $this->repository = $usuario;
     }
 
     public function index()
     {
-        return  $this->repository->orderBy('nome')->get();
+        return  $this->repository->orderBy('nome')->paginate();
     }
 
     public function show($id)
     {
+        dd($this->repository->find($id));
         return $this->repository->find($id);
     }
 
@@ -57,6 +58,6 @@ class UsuarioRepository
         ->orWhere('nome', 'LIKE' ,"%{$request->nome}%")
         ->orWhere('email', 'LIKE' ,"%{$request->email}%")
         ->orWhere('status', 'LIKE' ,"%{$request->status}%")
-        ->get();
+        ->paginate();
     }
 }

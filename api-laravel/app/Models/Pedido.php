@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Produto;
+use App\Models\User;
+
 class Pedido extends Model
 {
     use HasFactory;
@@ -12,16 +15,17 @@ class Pedido extends Model
     protected $table = 'pedidos';
 
     protected $fillable = [
-        'numero_pedido',
-        'fk_produto_id',
-        'fk_usuario_id'
+        'numero_ped',
+        'produto_id',
+        'usuario_id',
+        'status'
     ];
 
     public function produtos() {
-        return $this->hasMany(Produto::class, 'fk_produto_id' , 'id' );
+        return $this->hasMany(Produto::class);
     }
 
-    public function usuario() {
-        return $this->belongsTo(Usuario::class, 'fk_usuario_id' , 'id' );
+    public function usuarios() {
+        return $this->belongsTo(User::class);
     }
 }

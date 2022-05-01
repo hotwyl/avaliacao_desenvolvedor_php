@@ -18,18 +18,17 @@ class CreateTables extends Migration
             $table->id();
             $table->string('descricao');
             $table->double('valor', 8, 2);
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
 
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_pedido')->unique();
-            $table->foreignId('fk_produto_id')->nullable();
-            $table->foreignId('fk_usuario_id')->nullable();
+            $table->integer('numero_ped')->unique();
+            $table->foreignId('produto_id')->constrained('produtos');
+            $table->foreignId('usuario_id')->constrained('users');
+            $table->integer('status')->default(1);
             $table->timestamps();
-            $table->foreign('fk_produto_id')->references('id')->on('produtos');
-            $table->foreign('fk_usuario_id')->references('id')->on('users');
         });
     }
 
