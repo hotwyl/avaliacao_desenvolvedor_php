@@ -49,12 +49,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### Passo a Passo
 
 1. Clone este projeto ou baixe o arquivo ZIP
-`git clone <project-repository>` 
-certifique-se de estar dentro do diretório `api-laravel`
+`git clone https://github.com/hotwyl/avaliacao_desenvolvedor_php.git` 
 
 2. Em seu terminal (prompt de comando), execute os seguintes comandos:
 
-`cd <project-directory>` Acesse o diretório do projeto
+`cd api-laravel` Acesse o diretório do projeto
 
 `composer install` Instale os pacotes necessários
 
