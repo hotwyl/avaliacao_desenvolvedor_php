@@ -31,12 +31,12 @@ class PedidoController extends Controller
 
     public function store(StorePedidoRequest $request)
     {
-        return $this->service->store($request);
+        return $this->service->store($request->all());
     }
 
     public function update(UpdatePedidoRequest $request, $id)
     {
-        return $this->service->update($request, $id);
+        return $this->service->update($request->all(), $id);
     }
 
     public function delete($id)
@@ -46,6 +46,6 @@ class PedidoController extends Controller
 
     public function search(SearchPedidoRequest $request)
     {
-        return $this->service->search($request);
+        return $this->service->search($request->all());
     }
 }

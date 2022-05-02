@@ -22,10 +22,10 @@ class Pedido extends Model
     ];
 
     public function produtos() {
-        return $this->hasMany(Produto::class);
+        return $this->hasMany(Produto::class,'produto_id','id');
     }
 
     public function usuarios() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'usuario_id','id');
     }
 }

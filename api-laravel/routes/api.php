@@ -11,20 +11,19 @@ use App\Http\Controllers\{
     PedidoController
 };
 
-Route::prefix('/')->middleware('auth:api')->group(function () {
-    Route::group([
-        'middleware' => 'api',
-        'prefix' => 'auth'
-    ], function () {
-        Route::get('401', [AuthController::class, 'unauthorized'])->name('login');
+
+Route::prefix('/')->group(function () {
+    Route::get('auth/401', [AuthController::class, 'unauthorized'])->name('login');
+    Route::post('auth/login', [AuthController::class, 'login']);
+
+    Route::prefix('auth')->middleware('apiJwt')->group(function () {
         Route::post('user', [UsuarioController::class, 'store']);
-        Route::post('login', [AuthController::class, 'login']);
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
         Route::post('me', [AuthController::class, 'me']);
     });
 
-    Route::prefix('/v1')->group(function () {
+    Route::prefix('/v1')->middleware('apiJwt')->group(function () {
 
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuario.index');

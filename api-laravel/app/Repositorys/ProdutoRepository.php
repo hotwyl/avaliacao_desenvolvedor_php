@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProdutoRepository
 {
-    protected $categoria;
+    protected $produto;
 
     public function __construct(Produto $produto)
     {
@@ -27,19 +27,19 @@ class ProdutoRepository
 
     public function store($produto)
     {
-        return $this->repository->create($produto->toArray());
+        return $this->repository->create($produto);
     }
 
     public function update($request)
     {
-        $produto = $this->repository->find($request->id);
+        $produto = $this->repository->find($request['id']);
 
         if (!$produto) return false;
 
-        $produto->fill($request->toArray());
+        $produto->fill($request);
 
         if($produto->update())
-        return $this->repository->find($request->id);
+        return $this->repository->find($request['id']);
     }
 
     public function delete($id)

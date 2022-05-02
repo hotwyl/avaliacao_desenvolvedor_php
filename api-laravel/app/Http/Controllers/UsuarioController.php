@@ -31,7 +31,7 @@ class UsuarioController extends Controller
 
     public function store(StoreUsuarioRequest $request)
     {
-
+        return $this->service->store($request);
     }
 
     public function update(UpdateUsuarioRequest $request, $id)

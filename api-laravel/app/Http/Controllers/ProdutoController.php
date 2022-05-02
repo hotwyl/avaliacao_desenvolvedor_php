@@ -31,12 +31,12 @@ class ProdutoController extends Controller
 
     public function store(StoreProdutoRequest $request)
     {
-        return $this->service->store($request);
+        return $this->service->store($request->all());
     }
 
     public function update(UpdateProdutoRequest $request, $id)
     {
-        return $this->service->update($request, $id);
+        return $this->service->update($request->all(), $id);
     }
 
     public function delete($id)
@@ -46,6 +46,6 @@ class ProdutoController extends Controller
 
     public function search(SearchProdutoRequest $request)
     {
-        return $this->service->search($request);
+        return $this->service->search($request->all());
     }
 }

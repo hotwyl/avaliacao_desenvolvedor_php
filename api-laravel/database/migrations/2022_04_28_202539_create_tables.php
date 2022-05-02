@@ -25,8 +25,8 @@ class CreateTables extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->integer('numero_ped')->unique();
-            $table->foreignId('produto_id')->constrained('produtos');
-            $table->foreignId('usuario_id')->constrained('users');
+            $table->foreignId('produto_id')->constrained('produtos')->restrictOnUpdate()->cascadeOnDelete();
+            $table->foreignId('usuario_id')->constrained('users')->restrictOnUpdate()->cascadeOnDelete();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

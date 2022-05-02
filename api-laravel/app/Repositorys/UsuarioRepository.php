@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UsuarioRepository
 {
-    protected $categoria;
+    protected $usuario;
 
     public function __construct(User $usuario)
     {
@@ -22,25 +22,24 @@ class UsuarioRepository
 
     public function show($id)
     {
-        dd($this->repository->find($id));
         return $this->repository->find($id);
     }
 
     public function store($usuario)
     {
-        return $this->repository->create($usuario->toArray());
+        return $this->repository->create($usuario);
     }
 
     public function update($request)
     {
-        $usuario = $this->repository->find($request->id);
+        $usuario = $this->repository->find($request['id']);
 
         if (!$usuario) return false;
 
-        $usuario->fill($request->toArray());
+        $usuario->fill($request);
 
         if($usuario->update())
-        return $this->repository->find($request->id);
+        return $this->repository->find($request['id']);
     }
 
     public function delete($id)
