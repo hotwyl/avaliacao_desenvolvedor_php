@@ -50,6 +50,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 1. Clone este projeto ou baixe o arquivo ZIP
 `git clone <project-repository>` 
+certifique-se de estar dentro do diretório `api-laravel`
 
 2. Em seu terminal (prompt de comando), execute os seguintes comandos:
 
@@ -88,7 +89,32 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## EndPoints estrutura json
 
-***
+| Verbo  | EndPoint | Parametros | Retorno |
+| :------------ |:---------------:| -----:| -----:|
+| post | /auth/login | email, password | Token, informação usuario logado |
+| post | /auth/user | nome, email, password | usuario cadastrado |
+| post | /auth/refresh | email, password | Token, informação usuario logado |
+| post | /auth/logout |  | mensagem deslogado |
+| post | /auth/me |  | nome, email |
+| get | /v1/usuarios/ |  | lista usuarios cadastrados |
+| get | /v1/usuarios/{id} | id | informação do usuario solicitado |
+| post | /v1/usuarios/ | nome,email,password,status | usuario cadastrado |
+| put | /v1/usuarios/{id} | id,nome,email,password,status | informação do usuario Atualizado |
+| delete | /v1/usuarios/{id} | id | mensagem confirmação exclusão  Usuario|
+| post | /v1/usuarios/search | nome,email,password,status | usuarios correspondentes a termos pesquisado |
+| get | /v1/produtos/ |  | lista de Produtos cadastrados |
+| get | /v1/produtos/{id} | id | informação do Produto solicitado |
+| post | /v1/produtos/ | descricao,valor,status | Produto cadastrado |
+| put | /v1/produtos/{id} | id,descricao,valor,status | informação do Produto Atualizado |
+| delete | /v1/produtos/{id} | id | mensagem confirmação exclusão Produto |
+| post | /v1/produtos/search | descricao,valor,status | produtos correspondentes a termos pesquisado |
+| get | /v1/pedidos/ |  | lista de Pedidos registrados |
+| get | /v1/pedidos/{id} | id | informação do Pedido solicitado |
+| post | /v1/pedidos/ | numero_ped,usuario_id,produto_id | Pedido registrado |
+| put | /v1/pedidos/{id} | id,numero_ped,usuario_id,produto_id |informação do Pedido Atualizado |
+| delete | /v1/pedidos/{id} | id | mensagem confirmação exclusão Pedido |
+| post | /v1/pedidos/search | numero_ped,usuario_id,produto_id,status | Pedidos correspondentes a termos pesquisado |
+
 
 ## Como Utilizar
 
